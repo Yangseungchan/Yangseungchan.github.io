@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
-export const ProifleImageWrapper = styled.img`
+export const ProifleImageWrapper = styled(GatsbyImage)`
   width: 120px;
   height: 120px;
   margin-bottom: 30px;

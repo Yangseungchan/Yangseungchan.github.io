@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
 import Footer from '@components/Common/Footer';
 import GlobalStyle from '@components/Common/GlobalStyle';
 import Introudction from '@components/Main/Introudction';
-import CategoryList from '@components/Main/CategoryList';
+import CategoryList, { CategoryListProps } from '@components/Main/CategoryList';
 import { PostListItemType } from '@typings/PostItem.types';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 import PostList from '@components/Main/PostList';
 import { graphql } from 'gatsby';
+import queryString, { ParsedQuery } from 'query-string';
 
 const Container = styled.div`
   display: flex;
@@ -14,41 +16,84 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const CATEGORY_LIST = {
-  All: 5,
-  Web: 3,
-  Mobile: 2,
-  // Python: 4,
-  // Django: 6,
-  // Celery: 2,
-  // Docker: 8,
-  // NextJS: 9,
-  // Typescript: 10,
-  // Javascript: 2,
-  // Java: 5,
-  // Kotlin: 2,
-  // Golang: 1,
-};
+// const CATEGORY_LIST = {
+//   All: 5,
+//   Web: 3,
+//   Mobile: 2,
+//   // Python: 4,
+//   // Django: 6,
+//   // Celery: 2,
+//   // Docker: 8,
+//   // NextJS: 9,
+//   // Typescript: 10,
+//   // Javascript: 2,
+//   // Java: 5,
+//   // Kotlin: 2,
+//   // Golang: 1,
+// };
 
 interface IndexPageProps {
+  location: {
+    search: string;
+  };
   data: {
     allMarkdownRemark: {
       edges: PostListItemType[];
+    };
+    file: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData;
+      };
     };
   };
 }
 
 const IndexPage = ({
+  location: { search },
   data: {
     allMarkdownRemark: { edges },
+    file: {
+      childImageSharp: { gatsbyImageData },
+    },
   },
 }: IndexPageProps) => {
+  const parsed: ParsedQuery<string> = queryString.parse(search);
+  const selectedCategory: string =
+    typeof parsed.category !== 'string' || !parsed.category
+      ? 'All'
+      : parsed.category;
+
+  const categoryList = useMemo(
+    () =>
+      edges.reduce(
+        (
+          list: CategoryListProps['categoryList'],
+          {
+            node: {
+              frontmatter: { categories },
+            },
+          }: PostListItemType,
+        ) => {
+          categories.forEach(category => {
+            if (list[category] === undefined) list[category] = 1;
+            else list[category]++;
+          });
+          list['All']++;
+          return list;
+        },
+        { All: 0 },
+      ),
+    [],
+  );
   return (
     <Container>
       <GlobalStyle />
-      <Introudction />
-      <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
-      <PostList posts={edges} />
+      <Introudction profileImage={gatsbyImageData} />
+      <CategoryList
+        selectedCategory={selectedCategory}
+        categoryList={categoryList}
+      />
+      <PostList posts={edges} selectedCategory={selectedCategory} />
       <Footer />
     </Container>
   );
@@ -70,10 +115,17 @@ export const getPostList = graphql`
             date(formatString: "YYYY.MM.DD.")
             categories
             thumbnail {
-              publicURL
+              childImageSharp {
+                gatsbyImageData(width: 768, height: 400)
+              }
             }
           }
         }
+      }
+    }
+    file(name: { eq: "profile-image" }) {
+      childImageSharp {
+        gatsbyImageData(width: 120, height: 120)
       }
     }
   }

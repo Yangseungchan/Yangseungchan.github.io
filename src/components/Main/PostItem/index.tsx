@@ -20,19 +20,21 @@ const PostItem = ({
   date,
   categories,
   summary,
-  thumbnail,
+  thumbnail: {
+    childImageSharp: { gatsbyImageData },
+  },
   link,
 }: PostItemProps) => {
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage src={thumbnail.publicURL} alt="Post Item Image" />
+      <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
 
       <PostItemContent>
         <Title>{title}</Title>
         <Date>{date}</Date>
         <Category>
-          {categories.map(category => (
-            <CategoryItem key={category}>{category}</CategoryItem>
+          {categories.map(item => (
+            <CategoryItem key={item}>{item}</CategoryItem>
           ))}
         </Category>
         <Summary>{summary}</Summary>

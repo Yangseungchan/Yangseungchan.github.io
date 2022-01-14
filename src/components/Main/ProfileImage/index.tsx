@@ -1,11 +1,13 @@
 import React from 'react';
 import { ProifleImageWrapper } from '@components/Main/ProfileImage/styles';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
-const PROFILE_IMAGE_LINK =
-  'https://avatars.githubusercontent.com/u/38908080?v=4';
+interface ProfileImageProps {
+  profileImage: IGatsbyImageData;
+}
 
-const ProfileImage = () => {
-  return <ProifleImageWrapper src={PROFILE_IMAGE_LINK} alt="Profile Image" />;
+const ProfileImage = ({ profileImage }: ProfileImageProps) => {
+  return <ProifleImageWrapper image={profileImage} alt="Profile Image" />;
 };
 
 export default ProfileImage;
