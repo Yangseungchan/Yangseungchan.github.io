@@ -23,6 +23,7 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@pages': path.resolve(__dirname, 'src/pages'),
         '@templates': path.resolve(__dirname, 'src/templates'),
+        '@typings': path.resolve(__dirname, 'src/typings'),
       },
     },
   });

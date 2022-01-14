@@ -9,13 +9,9 @@ import {
   PostItemWrapper,
   ThumbnailImage,
 } from '@components/Main/PostItem/styles';
+import { PostFrontmatterType } from '@typings/PostItem.types';
 
-interface PostItemProps {
-  title: string;
-  date: string;
-  categories: string[];
-  summary: string;
-  thumbnail: string;
+interface PostItemProps extends PostFrontmatterType {
   link: string;
 }
 
@@ -29,7 +25,7 @@ const PostItem = ({
 }: PostItemProps) => {
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage src={thumbnail} alt="Post Item Image" />
+      <ThumbnailImage src={thumbnail.publicURL} alt="Post Item Image" />
 
       <PostItemContent>
         <Title>{title}</Title>

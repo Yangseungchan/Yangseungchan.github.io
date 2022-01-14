@@ -4,7 +4,9 @@ import Footer from '@components/Common/Footer';
 import GlobalStyle from '@components/Common/GlobalStyle';
 import Introudction from '@components/Main/Introudction';
 import CategoryList from '@components/Main/CategoryList';
+import { PostListItemType } from '@typings/PostItem.types';
 import PostList from '@components/Main/PostList';
+import { graphql } from 'gatsby';
 
 const Container = styled.div`
   display: flex;
@@ -28,16 +30,51 @@ const CATEGORY_LIST = {
   // Golang: 1,
 };
 
-const IndexPage = () => {
+interface IndexPageProps {
+  data: {
+    allMarkdownRemark: {
+      edges: PostListItemType[];
+    };
+  };
+}
+
+const IndexPage = ({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}: IndexPageProps) => {
   return (
     <Container>
       <GlobalStyle />
       <Introudction />
       <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
-      <PostList />
+      <PostList posts={edges} />
       <Footer />
     </Container>
   );
 };
 
 export default IndexPage;
+
+export const getPostList = graphql`
+  query getPostList {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            summary
+            date(formatString: "YYYY.MM.DD.")
+            categories
+            thumbnail {
+              publicURL
+            }
+          }
+        }
+      }
+    }
+  }
+`;

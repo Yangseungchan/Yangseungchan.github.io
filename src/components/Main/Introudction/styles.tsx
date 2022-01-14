@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Background = styled.div`
   width: 100%;
-  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  background-image: linear-gradient(40deg, #29323c 40%, #485563 60%);
   color: #ffffff;
 `;
 
