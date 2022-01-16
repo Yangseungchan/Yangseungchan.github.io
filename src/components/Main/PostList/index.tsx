@@ -1,4 +1,5 @@
 import React from 'react';
+import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import { PostListWrapper } from '@components/Main/PostList/styles';
 import PostItem from '@components/Main/PostItem';
 import { PostListItemType } from '@typings/PostItem.types';
@@ -9,29 +10,28 @@ interface PostListProps {
 }
 
 const PostList = ({ selectedCategory, posts }: PostListProps) => {
+  // console.log('selected : ', selectedCategory);
+
+  // const postListData = useMemo(
+  //   () =>
+  //     posts.filter(
+  //       ({
+  //         node: {
+  //           frontmatter: { categories },
+  //         },
+  //       }) =>
+  //         selectedCategory === 'All'
+  //           ? true
+  //           : categories.includes(selectedCategory),
+  //     ),
+  //   [posts, selectedCategory],
+  // );
+  const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts);
   return (
-    <PostListWrapper>
-      {posts
-        ?.filter(
-          ({
-            node: {
-              frontmatter: { categories },
-            },
-          }: PostListItemType) => categories.includes(selectedCategory),
-        )
-        .map(({ node: { id, frontmatter } }) => {
-          return (
-            <PostItem
-              {...frontmatter}
-              key={id}
-              link="https://www.google.co.kr"
-            />
-          );
-        })}
-      {/*<PostItem {...POST_ITEM_DATA} />*/}
-      {/*<PostItem {...POST_ITEM_DATA} />*/}
-      {/*<PostItem {...POST_ITEM_DATA} />*/}
-      {/*<PostItem {...POST_ITEM_DATA} />*/}
+    <PostListWrapper ref={containerRef}>
+      {postList.map(({ node: { id, frontmatter } }) => (
+        <PostItem {...frontmatter} key={id} link="https://www.google.co.kr" />
+      ))}
     </PostListWrapper>
   );
 };
