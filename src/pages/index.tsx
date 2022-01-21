@@ -16,22 +16,6 @@ const Container = styled.div`
   height: 100%;
 `;
 
-// const CATEGORY_LIST = {
-//   All: 5,
-//   Web: 3,
-//   Mobile: 2,
-//   // Python: 4,
-//   // Django: 6,
-//   // Celery: 2,
-//   // Docker: 8,
-//   // NextJS: 9,
-//   // Typescript: 10,
-//   // Javascript: 2,
-//   // Java: 5,
-//   // Kotlin: 2,
-//   // Golang: 1,
-// };
-
 interface IndexPageProps {
   location: {
     search: string;
@@ -109,6 +93,9 @@ export const getPostList = graphql`
       edges {
         node {
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             summary

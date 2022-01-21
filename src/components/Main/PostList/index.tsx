@@ -10,28 +10,21 @@ interface PostListProps {
 }
 
 const PostList = ({ selectedCategory, posts }: PostListProps) => {
-  // console.log('selected : ', selectedCategory);
-
-  // const postListData = useMemo(
-  //   () =>
-  //     posts.filter(
-  //       ({
-  //         node: {
-  //           frontmatter: { categories },
-  //         },
-  //       }) =>
-  //         selectedCategory === 'All'
-  //           ? true
-  //           : categories.includes(selectedCategory),
-  //     ),
-  //   [posts, selectedCategory],
-  // );
   const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts);
+
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({ node: { id, frontmatter } }) => (
-        <PostItem {...frontmatter} key={id} link="https://www.google.co.kr" />
-      ))}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostListItemType) => (
+          <PostItem {...frontmatter} key={id} link={slug} />
+        ),
+      )}
     </PostListWrapper>
   );
 };
