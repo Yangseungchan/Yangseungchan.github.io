@@ -1,7 +1,4 @@
 import React, { useMemo } from 'react';
-import styled from '@emotion/styled';
-import Footer from '@components/Common/Footer';
-import GlobalStyle from '@components/Common/GlobalStyle';
 import Introudction from '@components/Main/Introudction';
 import CategoryList, { CategoryListProps } from '@components/Main/CategoryList';
 import { PostListItemType } from '@typings/PostItem.types';
@@ -9,12 +6,7 @@ import { IGatsbyImageData } from 'gatsby-plugin-image';
 import PostList from '@components/Main/PostList';
 import { graphql } from 'gatsby';
 import queryString, { ParsedQuery } from 'query-string';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
+import Template from '@components/Common/Template';
 
 interface IndexPageProps {
   location: {
@@ -70,16 +62,14 @@ const IndexPage = ({
     [],
   );
   return (
-    <Container>
-      <GlobalStyle />
+    <Template>
       <Introudction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
       <PostList posts={edges} selectedCategory={selectedCategory} />
-      <Footer />
-    </Container>
+    </Template>
   );
 };
 
