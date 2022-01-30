@@ -44,6 +44,10 @@ const Template = ({
           name="google-site-verification"
           content="U7mYWw_vHYaETxzhv0sF3guWdjY6eWlRYQoOrdOMdkg"
         />
+        <meta
+          name="naver-site-verification"
+          content="98b230f2f18f79e76e7a6df263460ac5ce6d22f8"
+        />
         <html lang="ko" />
       </Helmet>
       <GlobalStyle />
