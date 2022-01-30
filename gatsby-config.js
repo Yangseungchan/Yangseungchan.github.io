@@ -3,13 +3,13 @@ module.exports = {
     title: `Yangseungchan's Dev Blog`,
     description: `꾸준한 성장을 목표로 노력하는 학생 개발자 블로그`,
     author: `Yangseungchan`,
-    siteUrl: `https://www.google.com/`,
+    siteUrl: `https://yangseungchan.github.io/`,
   },
   plugins: [
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://google.com/',
+        siteUrl: 'https://yangseungchan.github.io/',
         stripQueryString: true,
       },
     },
