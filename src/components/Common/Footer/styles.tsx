@@ -19,7 +19,7 @@ export const PoweredStack = styled.div`
   margin-top: 20px;
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 250px;
   box-sizing: border-box;
 `;
 
@@ -32,7 +32,7 @@ export const StackIconContainer = styled.div`
   display: grid;
   align-items: center;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 8px;
   margin-left: 10px;
 `;

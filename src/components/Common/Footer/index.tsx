@@ -4,13 +4,13 @@ import {
   PoweredStack,
   PowerStackTitle,
   StackIconContainer,
-  AlignedLink
+  AlignedLink,
 } from '@components/Common/Footer/styles';
 import GatsbyIcon from '../../../../static/gatsbyicon.svg';
 import ReactIcon from '../../../../static/reacticon.svg';
 import TypescriptIcon from '../../../../static/typescripticon.svg';
 import GraphqlIcon from '../../../../static/graphqlicon.svg';
-// import { Link } from 'gatsby';
+import GithubpageIcon from '../../../../static/githubpagesicon.svg';
 
 const Footer = () => {
   return (
@@ -30,6 +30,9 @@ const Footer = () => {
           </AlignedLink>
           <AlignedLink to="https://graphql.org/">
             <GraphqlIcon />
+          </AlignedLink>
+          <AlignedLink to="https://pages.github.com/">
+            <GithubpageIcon />
           </AlignedLink>
         </StackIconContainer>
       </PoweredStack>

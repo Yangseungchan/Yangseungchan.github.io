@@ -27,7 +27,6 @@ const Template = ({
           name="description"
           content="꾸준히 성장하고픈 학생 개발자입니다."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset-UTF-8" />
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
