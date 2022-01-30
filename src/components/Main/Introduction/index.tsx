@@ -5,7 +5,7 @@ import {
   SubTitle,
   Wrapper,
   Title,
-} from '@components/Main/Introudction/styles';
+} from '@components/Main/Introduction/styles';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 interface IntroductionProps {

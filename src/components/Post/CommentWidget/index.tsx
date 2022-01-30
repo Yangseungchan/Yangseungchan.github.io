@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { UtterancesWrapper } from '@components/Post/CommentWidget/styles';
 
 const src = 'https://utteranc.es/client.js';
 const repo = 'Yangseungchan/Yangseungchan.github.io'; // 자신 계정의 레포지토리로 설정
@@ -35,8 +36,9 @@ const CommentWidget = () => {
     });
 
     element.current?.appendChild(utterances);
+    3;
   }, []);
-  return <div ref={element} />;
+  return <UtterancesWrapper ref={element} />;
 };
 
 export default CommentWidget;

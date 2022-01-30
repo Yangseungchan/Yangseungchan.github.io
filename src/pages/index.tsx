@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import Introudction from '@components/Main/Introudction';
+import Introduction from '@components/Main/Introduction';
 import CategoryList, { CategoryListProps } from '@components/Main/CategoryList';
 import { PostListItemType } from '@typings/PostItem.types';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
@@ -13,6 +13,13 @@ interface IndexPageProps {
     search: string;
   };
   data: {
+    site: {
+      siteMetadata: {
+        title: string;
+        description: string;
+        siteUrl: string;
+      };
+    };
     allMarkdownRemark: {
       edges: PostListItemType[];
     };
@@ -20,6 +27,7 @@ interface IndexPageProps {
       childImageSharp: {
         gatsbyImageData: IGatsbyImageData;
       };
+      publicURL: string;
     };
   };
 }
@@ -27,9 +35,13 @@ interface IndexPageProps {
 const IndexPage = ({
   location: { search },
   data: {
+    site: {
+      siteMetadata: { title, description, siteUrl },
+    },
     allMarkdownRemark: { edges },
     file: {
       childImageSharp: { gatsbyImageData },
+      publicURL,
     },
   },
 }: IndexPageProps) => {
@@ -62,8 +74,13 @@ const IndexPage = ({
     [],
   );
   return (
-    <Template>
-      <Introudction profileImage={gatsbyImageData} />
+    <Template
+      title={title}
+      description={description}
+      url={siteUrl}
+      image={publicURL}
+    >
+      <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
@@ -77,6 +94,13 @@ export default IndexPage;
 
 export const getPostList = graphql`
   query getPostList {
+    site {
+      siteMetadata {
+        title
+        description
+        siteUrl
+      }
+    }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
     ) {
