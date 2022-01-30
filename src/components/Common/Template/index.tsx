@@ -40,6 +40,10 @@ const Template = ({
         <meta property="og:url" content={url} />
         <meta property="og:site_name" content={title} />
 
+        <meta
+          name="google-site-verification"
+          content="U7mYWw_vHYaETxzhv0sF3guWdjY6eWlRYQoOrdOMdkg"
+        />
         <html lang="ko" />
       </Helmet>
       <GlobalStyle />
