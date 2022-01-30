@@ -3,7 +3,7 @@ date: '2021-07-23'
 title: 'NextJS에서 ToastUI Viewer 적용하기'
 categories: ['React', 'Toastui', 'Viewer', 'Next']
 summary: 'NextJS에서 ToastUI Viewer 적용하는 방법을 알아본다'
-thumbnail: './toastui-viewer'
+thumbnail: './toastui-viewer.png'
 ---
 
 [지난 포스트](https://yangseungchan.github.io/toastui-editor/)에 이어서 ToastUI Viewer를 적용해보려고 한다. 여기서 Viewer란 Editor에서 만든 게시글의 내용을 보여주는 도구이다. Editor에서 소개한 방법과 비슷하게 dynamic import를 이용해서 적용하면 된다! 간단하지만 공식문서만 보았을때는 다소 난해한 경험을 겪어서 이것을 읽는 분들은 나처럼 삽질을 하지 않기를 바란다.

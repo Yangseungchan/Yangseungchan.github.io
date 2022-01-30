@@ -19,6 +19,10 @@ export const MarkdownRenderer = styled.div`
     padding: 3px 0;
   }
 
+  img {
+    width: 100%;
+  }
+
   // Adjust Heading Element Style
   h1,
   h2,

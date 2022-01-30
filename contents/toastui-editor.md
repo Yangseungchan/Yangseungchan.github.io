@@ -3,7 +3,7 @@ date: '2021-07-21'
 title: 'NextJS에서 Toastui Editor 적용하기'
 categories: ['React', 'Toastui', 'Editor', 'Next']
 summary: 'NextJS에서 Toastui Editor 적용하는 방법을 알아본다'
-thumbnail: './toastui-editor'
+thumbnail: './toastui-editor.png'
 ---
 
 NextJS와 React를 사용하는 프로젝트를 진행하면서 게시글을 작성하고 읽는 기능이 필요해졌다. 이를 위해 찾아본 결과 ToastUI에서 제공하는 [Editor](https://github.com/nhn/tui.editor/tree/master/apps/react-editor)가 있어서 사용해보았다. 그런데 공식문서대로 적용해보았으나 오류(~ is not defined)가 발생하며 적용이 되지 않았다. Github issue에서 이에 관해 찾아보았으나 별로 마땅한 해결책이 나오지 않아 구글링을 시도했다. 역시나, 어느 똑똑하신 분께서 [해결책](https://yoon-dumbo.tistory.com/m/38?category=969772)을 내려주셨다.

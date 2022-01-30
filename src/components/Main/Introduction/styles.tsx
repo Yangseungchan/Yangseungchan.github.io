@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 
 export const Background = styled.div`
   width: 100%;
@@ -37,5 +38,15 @@ export const Title = styled.div`
   font-weight: 700;
   @media (max-width: 768px) {
     font-size: 25px;
+  }
+`;
+
+export const GithubLink = styled(Link)`
+  display: flex;
+  place-items: center;
+  width: 30px;
+  margin-top: 20px;
+  & svg {
+    width: 100%;
   }
 `;
